@@ -4,7 +4,7 @@
 //     int b[n];
 //     for(int i=1;i<n;i++)
 //     {
-//         if(arr[i]>max)arr[i]=max;
+//         if(arr[i]>max)max=arr[i];
 //     }
 //     int count[max+1]={0};
 //     for(int i=0;i<n;i++)

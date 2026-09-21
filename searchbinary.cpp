@@ -4,7 +4,7 @@
 // {
 //     mid = (start + end) / 2;
 //     if (arr[mid] == key) cout<<got it<<endl; break;
-//     elif (arr[mid] < key) start = mid + 1;
+//     else if (arr[mid] < key) start = mid + 1;
 //     else end = mid -1;
 // }
 #include <iostream>

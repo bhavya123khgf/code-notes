@@ -23,7 +23,7 @@ class Queue
     {
         if(rear==n){cout<<"overflow condition"<<endl;}
         else{
-            rear++;
+            rear++;//if circular queue rear = (rear+1)%s;
             queue[rear]=val;
         }
     }
