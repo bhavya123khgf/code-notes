@@ -1,28 +1,20 @@
 #include <iostream>
 using namespace std;
-// MAX-HEAPIFy
 void maxHeapify(int A[], int i, int n)
 {
     int left = 2 * i;
     int right = 2 * i + 1;
     int largest;
-    // Check left child
-    if (left <= n && A[left] > A[i])
+    if (left <= n && A[left] > A[i])//checks if left child is larger than than i
         largest = left;
     else
         largest = i;
-    // Check right child
-    if (right <= n && A[right] > A[largest])
+    if (right <= n && A[right] > A[largest])//checks if right child is larger than than i
         largest = right;
-
     // If largest is not the current node
     if (largest != i)
     {
-        // Exchange
-        int temp = A[i];
-        A[i] = A[largest];
-        A[largest] = temp;
-
+        swap(A[i],A[largest]);
         // Move down the tree
         maxHeapify(A, largest, n);
     }
