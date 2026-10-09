@@ -6,8 +6,9 @@ class Node{
     int data;
     Node*right,*left;
     bool rthread,lthread;
-    Node(int val):data(val){right=left=NULL;rthread=lthread=true;}
+    Node(int val):data(val){right=left=NULL;rthread=lthread=false;}
 };
+
 Node*leftmost(Node*root)
 {
     if(root==NULL)return;
@@ -17,16 +18,18 @@ Node*leftmost(Node*root)
     }
     return root;
 }
+
 void inorder(Node*root)
 {
     Node*curr=leftmost(root);
     while(curr!=NULL)
     {
         cout<<curr->data<<" ";
-        if(curr->rthread)curr=curr->right;
+        if(curr->rthread==false)curr=curr->right;
         else curr=leftmost(curr->right);
     }
 }
+
 Node* insert(Node *root, int val)
 {
     if(root == NULL)
@@ -34,7 +37,7 @@ Node* insert(Node *root, int val)
 
     if(val < root->data)
     {
-        if(root->lthread==false)
+        if(root->lthread==true)
         {
             root->left=insert(root->left,val);
         }
@@ -44,12 +47,12 @@ Node* insert(Node *root, int val)
             newnode->left=root->left;
             newnode->right=root;
             root->left=newnode;
-            root->lthread=false;
+            root->lthread=true;
         }
     }
     else if(val > root->data)
     {
-        if(root->rthread=false)
+        if(root->rthread==true)
         {
             root->right=insert(root->right,val);
         }
@@ -59,11 +62,12 @@ Node* insert(Node *root, int val)
             newnode->left=root;
             newnode->right=root->right;
             root->right=newnode;
-            root->rthread=false;
+            root->rthread=true;
         }
     }
     return root;
 }
+
 int main()
 {
     Node *root = NULL;
