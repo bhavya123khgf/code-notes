@@ -48,21 +48,21 @@ void postorder(Node * root)
     postorder(root->right);
     cout<<root->data;
 }
-vector <int> levelorder(Node*root)
+void levelorder(Node* root)
 {
-    queue <Node*> q;
+    queue<Node*> q;
     q.push(root);
-    vector <int> ans;
-    Node * temp;
-    while(!q.empty())//     O(n)
+    Node* temp;
+    while(!q.empty())
     {
-        temp=q.front();
+        temp = q.front();
         q.pop();
-        ans.push_back(temp->data);
-        if(temp->left)q.push(temp->left);
-        if(temp->right)q.push(temp->right);
+        cout << temp->data << " ";
+        if(temp->left)
+            q.push(temp->left);
+        if(temp->right)
+            q.push(temp->right);
     }
-    return ans;
 }
 vector <int> preorderiterative(Node*root)
 {
@@ -141,57 +141,7 @@ int height(Node*root)
     if(root == NULL)return 0;
     return(1+max(height(root->left),height(root->right)));
 }
-Node *deleteNode(Node * root, int target)
-{
-    if(!root)return NULL;
-    if(root->data>target){root->left = deleteNode(root->left,target);return root;}
-    else if(root->data<target){root->right = deleteNode(root->right,target);return root;}
-    else{
-        //leaf node
-        if(!root->left && !root->right){delete root;return NULL;}
-        //1child
-        else if(!root->right)//left child exists
-        {
-            Node*temp=root->left;
-            delete root;
-            return temp;
-        }
-        else if(!root->left)//right child exists
-        {
-            Node*temp=root->right;
-            delete root;
-            return temp;
-        }
-        //2child
-        else
-        {
-            //left side ka maxm(rightmost)
-            Node*child=root->left;
-            Node* parent = root;
-            
-            while(child->right)
-            {
-                parent=child;
-                child=child->right;
-            }
-            if(root!=parent)
-            {
-                parent->right=child->left;
-                child->left=root->left;
-                child->right=root->right;
-                delete root;
-                return child;
-            }
-            else
-            {
-                child->right=root->right;
-                delete root;
-                return child;
-            }
-        }
-        
-    }
-}
+
 int main()
 {
     cout<<"enter the root node: ";

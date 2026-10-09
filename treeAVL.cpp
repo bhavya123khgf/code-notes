@@ -28,6 +28,7 @@ Node*leftrotation(Node*root)
     //update height
     root->height = 1+max(getheight(root->left),getheight(root->right));
     child->height = 1+max(getheight(child->left),getheight(child->right));
+    return child;
 }
 int getbalance(Node*root)
 {
@@ -61,13 +62,13 @@ Node*insert(Node*root,int key)
         return leftrotation(root);
     }
     //left right
-    else if(balance>1 && key>root->right->data)
+    else if(balance>1 && key>root->left->data)
     {
         root->left = leftrotation(root->left);
         return rightrotation(root);
     }
     //right left
-    else if(balance<-1 && key<root->left->data)
+    else if(balance<-1 && key<root->right->data)
     {
         root->right = rightrotation(root->right);
         return leftrotation(root);
