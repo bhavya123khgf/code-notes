@@ -30,41 +30,45 @@ void inorder(Node*root)
     }
 }
 
-Node* insert(Node *root, int val)
+Node* insert(Node* root, int val)
 {
     if(root == NULL)
         return new Node(val);
 
     if(val < root->data)
     {
-        if(root->lthread==true)
+        if(root->left == NULL)
         {
-            root->left=insert(root->left,val);
+            Node* newnode = new Node(val);
+
+            newnode->right = root;
+            newnode->rthread = true;
+
+            root->left = newnode;
         }
         else
         {
-            Node* newnode= new Node(val);
-            newnode->left=root->left;
-            newnode->right=root;
-            root->left=newnode;
-            root->lthread=true;
+            root->left = insert(root->left, val);
         }
     }
     else if(val > root->data)
     {
-        if(root->rthread==true)
+        if(root->rthread == true)
         {
-            root->right=insert(root->right,val);
+            Node* newnode = new Node(val);
+
+            newnode->right = root->right;
+            newnode->rthread = true;
+
+            root->right = newnode;
+            root->rthread = false;
         }
         else
         {
-            Node* newnode= new Node(val);
-            newnode->left=root;
-            newnode->right=root->right;
-            root->right=newnode;
-            root->rthread=true;
+            root->right = insert(root->right, val);
         }
     }
+
     return root;
 }
 

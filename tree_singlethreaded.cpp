@@ -32,14 +32,12 @@ void inorder(Node* root)
     while(curr != NULL)
     {
         cout << curr->data << " ";
-        if(curr->rthread == false)
+        if(curr->rthread)
         {
-            // Right pointer is a THREAD
             curr = curr->right;
         }
         else
         {
-            // Right pointer is an actual CHILD
             curr = leftmost(curr->right);
         }
     }
