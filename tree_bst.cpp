@@ -68,7 +68,7 @@ Node *deleteNode(Node * root, int target)
             }
             if(root!=parent)
             {
-                parent->right=child->left;
+                parent->right=child->left;//parent ko bolo child ke left ko point kre(parent ko, naki root ko)
                 child->left=root->left;
                 child->right=root->right;
                 delete root;
